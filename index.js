@@ -11,6 +11,9 @@ function hashTable(maxLength) {
     return {
         set: function (key, value) {
             var index = getHashIndex(key);
+            if (list[index]) {
+                console.log('Collision:', key);
+            }
             list[index] = value;
         },
         get: function (key) {
@@ -20,7 +23,7 @@ function hashTable(maxLength) {
     };
 }
 var table = hashTable();
-table.set('foo', 'bar');
-table.set('baz', 'qux');
-table.get('foo'); // bar
-table.get('baz'); // qux
+table.set('tou', 'qsx');
+table.set('mou', 'czx');
+console.log(table.get('tou'));
+console.log(table.get('mou'));

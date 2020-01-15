@@ -20,6 +20,10 @@ function hashTable(maxLength: number = 13): HashTable {
     set(key: string, value: any): void {
       const index = getHashIndex(key)
 
+      if (list[index]) {
+        console.log('Collision:', key)
+      }
+
       list[index] = value
     },
 
@@ -33,8 +37,8 @@ function hashTable(maxLength: number = 13): HashTable {
 
 const table = hashTable()
 
-table.set('foo', 'bar')
-table.set('baz', 'qux')
+table.set('tou', 'qsx')
+table.set('mou', 'czx')
 
-table.get('foo') // bar
-table.get('baz') // qux
+console.log(table.get('tou'))
+console.log(table.get('mou'))
