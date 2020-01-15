@@ -31,7 +31,6 @@ function hashTable(maxLength) {
                 store[storeIndex] = [];
                 store[storeIndex].push([key, value]);
             }
-            console.log(store);
         },
         get: function (key) {
             var storeIndex = hash(key);
@@ -41,11 +40,20 @@ function hashTable(maxLength) {
                     return store[storeIndex][matchKeyIndex][1];
                 }
             }
+        },
+        has: function (key) {
+            var storeIndex = hash(key);
+            if (store[storeIndex]) {
+                var matchKeyIndex = findKeyIndex(store[storeIndex], key);
+                if (matchKeyIndex !== null)
+                    return true;
+            }
+            return false;
         }
     };
 }
 var table = hashTable();
-table.set('tou', 'qsx');
-table.set('mou', 'czx');
-console.log(table.get('tou'));
-console.log(table.get('mou'));
+table.set('foo', 'bar');
+table.set('baz', 'qux');
+table.get('foo'); // bar
+table.get('baz'); // qux

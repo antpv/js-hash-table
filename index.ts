@@ -1,6 +1,7 @@
 interface HashTable {
   set(key: string, value: any): void,
-  get(key: string): any
+  get(key: string): any,
+  has(key: string): boolean
 }
 
 function hashTable(maxLength: number = 13): HashTable {
@@ -52,14 +53,26 @@ function hashTable(maxLength: number = 13): HashTable {
           return store[storeIndex][matchKeyIndex][1]
         }
       }
+    },
+
+    has(key: string): boolean {
+      const storeIndex = hash(key)
+
+      if (store[storeIndex]) {
+        const matchKeyIndex = findKeyIndex(store[storeIndex], key)
+
+        if (matchKeyIndex !== null) return true
+      }
+
+      return false
     }
   }
 }
 
 const table = hashTable()
 
-table.set('tou', 'qsx')
-table.set('mou', 'czx')
+table.set('foo', 'bar')
+table.set('baz', 'qux')
 
-table.get('tou') // qsx
-table.get('mou') // czx
+table.get('foo') // bar
+table.get('baz') // qux
