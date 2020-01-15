@@ -4,7 +4,7 @@ interface HashTable {
 }
 
 function hashTable(maxLength: number = 13): HashTable {
-  const list: any[] = []
+  const store: any[] = []
 
   function getHashIndex(key: string): number {
     let keySize: number = 1
@@ -20,17 +20,17 @@ function hashTable(maxLength: number = 13): HashTable {
     set(key: string, value: any): void {
       const index = getHashIndex(key)
 
-      if (list[index]) {
+      if (store[index]) {
         console.log('Collision:', key)
       }
 
-      list[index] = value
+      store[index] = value
     },
 
     get(key: string): any {
       const index = getHashIndex(key)
 
-      return list[index]
+      return store[index]
     }
   }
 }
